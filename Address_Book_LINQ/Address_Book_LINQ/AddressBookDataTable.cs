@@ -81,5 +81,15 @@ namespace Address_Book_LINQ
             Console.WriteLine("Following Contacts are present in Datatable after deletion of Contact of Person 'Pratiksha' ");
             DisplayContacts(contacts);
         }
+        /// <summary>
+        /// Count Contacts From Perticular City AND State
+        /// </summary>
+        /// <param name="table"></param>
+        public void CountContactsFromPerticularCityANDState(DataTable table)
+        {
+            var contacts = table.Rows.Cast<DataRow>()
+                             .Where(x => x["City"].Equals("Pune") && x["State"].Equals("MH")).Count();
+            Console.WriteLine($"Count of Persons Beloning to City 'Baroda' and State 'MP' : {contacts} " );
+        }
     }
 }
