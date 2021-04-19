@@ -14,30 +14,33 @@ namespace Address_Book_LINQ
         /// </summary>
         public DataTable CreateAddressBookDataTable()
         {
-            DataTable addressBookDataTable = new DataTable();
+            DataTable addressBookDataTable1 = new DataTable();
 
-            addressBookDataTable.Columns.Add("FirstName", typeof(string));
-            addressBookDataTable.Columns.Add("LastName", typeof(string));
-            addressBookDataTable.Columns.Add("Address", typeof(string));
-            addressBookDataTable.Columns.Add("City", typeof(string));
-            addressBookDataTable.Columns.Add("State", typeof(string));
-            addressBookDataTable.Columns.Add("Zip", typeof(int));
-            addressBookDataTable.Columns.Add("PhoneNumber", typeof(long));
-            addressBookDataTable.Columns.Add("Email", typeof(string));
+            addressBookDataTable1.Columns.Add("FirstName", typeof(string));
+            addressBookDataTable1.Columns.Add("LastName", typeof(string));
+            addressBookDataTable1.Columns.Add("Address", typeof(string));
+            addressBookDataTable1.Columns.Add("City", typeof(string));
+            addressBookDataTable1.Columns.Add("State", typeof(string));
+            addressBookDataTable1.Columns.Add("Zip", typeof(int));
+            addressBookDataTable1.Columns.Add("PhoneNumber", typeof(long));
+            addressBookDataTable1.Columns.Add("Email", typeof(string));
 
             //Add Values for Columns
-            addressBookDataTable.Rows.Add("Amit", "Rana", "Ashish Plaza", "Pune", "MH", 663222, 8979325434, "Amit@gmail.com");
-            addressBookDataTable.Rows.Add("Rohit", "Rana", "Venu Hights", "Pune", "MH", 763226, 833343210, "rohit@gmail.com");
-            addressBookDataTable.Rows.Add("Neha", "Negi", "Flex Road", "Mumbai", "MH", 303222, 6876543210, "neha@gmail.com");
-            addressBookDataTable.Rows.Add("Aman", "Rawat", "Neer Road", "Benglore", "Karnataka", 400028, 889000880, "aman@gmail.com");
-            addressBookDataTable.Rows.Add("sumit", "Semwal", "Panji", "Panaji", "Goa", 323254, 8877743210, "sumit@gmail.com");
-            addressBookDataTable.Rows.Add("Naman", "Magare", "Indor", "Indor", "MP", 485254, 7877743990, "naman@gmail.com");
-            addressBookDataTable.Rows.Add("Rekha", "rani", "baroda", "Baroda", "MP", 43254, 7888743210, "rekha@gmail.com");
+            addressBookDataTable1.Rows.Add("Amit", "Rana", "Ashish Plaza", "Pune", "MH", 663222, 8979325434, "Amit@gmail.com");
+            addressBookDataTable1.Rows.Add("Rohit", "Rana", "Venu Hights", "Pune", "MH", 763226, 833343210, "rohit@gmail.com");
+            addressBookDataTable1.Rows.Add("Neha", "Negi", "Flex Road", "Mumbai", "MH", 303222, 6876543210, "neha@gmail.com");
+            addressBookDataTable1.Rows.Add("Aman", "Rawat", "Neer Road", "Benglore", "Karnataka", 400028, 889000880, "aman@gmail.com");
+            addressBookDataTable1.Rows.Add("sumit", "Semwal", "Panji", "Panaji", "Goa", 323254, 8877743210, "sumit@gmail.com");
+            addressBookDataTable1.Rows.Add("Naman", "Magare", "Indor", "Indor", "MP", 485254, 7877743990, "naman@gmail.com");
+            addressBookDataTable1.Rows.Add("Rekha", "rani", "baroda", "Baroda", "MP", 43254, 7888743210, "rekha@gmail.com");
 
 
-            return addressBookDataTable;
+            return addressBookDataTable1;
         }
-
+        /// <summary>
+        /// Display contact
+        /// </summary>
+        /// <param name="table"></param>
         public void DisplayContacts(DataTable table)
         {
             var contacts = table.Rows.Cast<DataRow>();
@@ -49,7 +52,10 @@ namespace Address_Book_LINQ
                 Console.WriteLine("\n------------------------------------");
             }
         }
-
+        /// <summary>
+        /// Adit contact by first name 
+        /// </summary>
+        /// <param name="table"></param>
         public void EditContact(DataTable table)
         {
             var contacts = table.AsEnumerable().Where(x => x.Field<string>("FirstName") == "Naman");
@@ -61,8 +67,19 @@ namespace Address_Book_LINQ
                 contact.SetField("Email", "Naman@yahoo.com");
             }
             Console.WriteLine("\n**************************************************");
-            Console.WriteLine("Following is recently Updated Contact");
+            Console.WriteLine("These is recently Updated Contact");
             DisplayContacts(contacts.CopyToDataTable());
+        }
+
+        /// <summary>
+        /// Delet contact
+        /// </summary>
+        /// <param name="table"></param>
+        public void DeleteContact(DataTable table)
+        {
+            var contacts = table.AsEnumerable().Where(r => r.Field<string>("FirstName") != "Amit").CopyToDataTable();
+            Console.WriteLine("Following Contacts are present in Datatable after deletion of Contact of Person 'Pratiksha' ");
+            DisplayContacts(contacts);
         }
     }
 }
