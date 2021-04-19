@@ -13,7 +13,8 @@ namespace Address_Book_LINQ
             //addressBookDataTable.DisplayContacts(table);
             //addressBookDataTable.EditContact(table);
             Console.WriteLine("\n**************************************************");
-            addressBookDataTable.DeleteContact(table);
+            //addressBookDataTable.DeleteContact(table);
+            addressBookDataTable.RetrieveContactBelongingToPerticularCityORState(table);
         }
     }
 }

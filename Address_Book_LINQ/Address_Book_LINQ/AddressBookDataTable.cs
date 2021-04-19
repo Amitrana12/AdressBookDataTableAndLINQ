@@ -81,5 +81,16 @@ namespace Address_Book_LINQ
             Console.WriteLine("Following Contacts are present in Datatable after deletion of Contact of Person 'Pratiksha' ");
             DisplayContacts(contacts);
         }
+        /// <summary>
+        /// Retrieve Contact Belonging To Perticular City OR State
+        /// </summary>
+        /// <param name="table"></param>
+        public void RetrieveContactBelongingToPerticularCityORState(DataTable table)
+        {
+            var contacts = table.Rows.Cast<DataRow>()
+                             .Where(x => x["City"].Equals("Pune") || x["State"].Equals("MH")).CopyToDataTable();
+            Console.WriteLine("Following Contacts belonging to perticular City or State ");
+            DisplayContacts(contacts);
+        }
     }
 }
