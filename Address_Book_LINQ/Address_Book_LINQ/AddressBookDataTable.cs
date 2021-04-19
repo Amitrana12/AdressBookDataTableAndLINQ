@@ -49,5 +49,20 @@ namespace Address_Book_LINQ
                 Console.WriteLine("\n------------------------------------");
             }
         }
+
+        public void EditContact(DataTable table)
+        {
+            var contacts = table.AsEnumerable().Where(x => x.Field<string>("FirstName") == "Naman");
+            foreach (var contact in contacts)
+            {
+                contact.SetField("LastName", "Dhiyani");
+                contact.SetField("City", "Banglore");
+                contact.SetField("State", "Karnataka");
+                contact.SetField("Email", "Naman@yahoo.com");
+            }
+            Console.WriteLine("\n**************************************************");
+            Console.WriteLine("Following is recently Updated Contact");
+            DisplayContacts(contacts.CopyToDataTable());
+        }
     }
 }
