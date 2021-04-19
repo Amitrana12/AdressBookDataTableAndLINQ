@@ -122,5 +122,18 @@ namespace Address_Book_LINQ
             DisplayContacts(contacts.CopyToDataTable());
         }
 
+        /// <summary>
+        ///Count Contacts By Address Book Type
+        /// </summary>
+        /// <param name="table"></param>
+        public void CountContactsByAddressBookType(DataTable table)
+        {
+            var friendsContacts = table.Rows.Cast<DataRow>()
+                             .Where(x => x["AddressBookType"].Equals("Friends")).Count();
+            Console.WriteLine($"Number of Persons belongs to type 'Friends' : {friendsContacts} ");
+            var familyContact = table.Rows.Cast<DataRow>()
+                             .Where(x => x["AddressBookType"].Equals("Family")).Count();
+            Console.WriteLine($"Number of Persons belongs to type 'Family' : {familyContact}");
+        }
     }
 }
