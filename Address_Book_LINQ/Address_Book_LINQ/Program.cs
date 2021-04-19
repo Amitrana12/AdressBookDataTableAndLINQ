@@ -14,10 +14,11 @@ namespace Address_Book_LINQ
             //addressBookDataTable.EditContact(table);
             Console.WriteLine("\n**************************************************");
             //addressBookDataTable.DeleteContact(table);
-           
-            // addressBookDataTable.RetrieveContactBelongingToPerticularCityORState(table);
 
-            addressBookDataTable.CountContactsFromPerticularCityANDState(table);
+            //addressBookDataTable.RetrieveContactBelongingToPerticularCityORState(table);
+
+            // addressBookDataTable.CountContactsFromPerticularCityANDState(table);
+            addressBookDataTable.SortContacts(table);
 
         }
     }
